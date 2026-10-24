@@ -6,8 +6,4 @@ pipeline {
     stage ('Test')     { steps { bat 'test.bat' } }
     stage ('Package')  { steps { bat 'package.bat' } }
   }
-  post {
-    success { archiveArtifcats artifacts: 'distv/**', fingerprint: true }
-    failure { echo 'CI pipeline failed' }
-  }
 }
