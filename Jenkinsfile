@@ -1,39 +1,14 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build') {
-            steps {
-                bat 'build.bat'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'test.bat'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                bat 'package.bat'
-            }
-        }
-    }
-
-    post {
-        success {
-            archiveArtifacts artifacts: 'dist/**',
-                             fingerprint: true
-        }
-        failure {
-            echo 'CI pipeline failed'
-        }
-    }
+  agent any
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+    stage('Build')    { steps { bat 'build.bat' } }
+    stage('Test')     { steps { bat 'test.bat' } }
+    stage('Package')  { steps { bat 'package.bat' } }
+  }
+  post {
+    success { archiveArtifacts artifacts: 'dist/**', fingerprint: true }
+    failure { echo 'CI pipeline failed' }
+  }
 }
+this is the finla code given it was run first time now whats the problem
